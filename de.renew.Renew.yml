@@ -19,7 +19,8 @@ modules:
   - name: renew
     buildsystem: simple
     build-commands:
-      - unzip -d /app/renew/ renew4.1base.zip -x 'doc/*' 'samples/*' 'bin/win/*'
+      - unzip -d /app/ renew4.2base.zip -x 'doc/*' 'samples/*' 'bin/win/*'
+      - mv /app/renew4.2 /app/renew
       - cd /app/renew/bin/unix; yes n | PATH="/app/jre/bin:/usr/bin" ./installrenew
       - for i in compilestub jcompile makestub renewexport renew loadrenew; do install -Dm755 /app/renew/bin/unix/$i /app/bin/$i; done
       - mkdir -p /app/share/icons/hicolor/
@@ -34,8 +35,8 @@ modules:
       - rm -rf /app/renew/bin/unix/{freedesktop,installrenew}
     sources:
       - type: file
-        url: https://www2.informatik.uni-hamburg.de/TGI/renew/4.1/renew4.1base.zip
-        sha256: b475a65e3c78107e027fa60f45b7fe900438b188f47f4ac185a9059ad480ea9e
+        url: https://www2.informatik.uni-hamburg.de/TGI/renew/4.2/renew4.2base.zip
+        sha256: 6b4facfd759634ed4b8ab2e234e1d3f4a69c64e901bfc55a8fecd11b70e5fe6a
       - type: file
         url: https://www2.informatik.uni-hamburg.de/TGI/renew/appstream/de.renew.Renew.appdata.xml
-        sha256: 400e9bd568683f9baff01cd72b1f8458d84a125d1a5c36ded9dc71fa339ea29f
+        sha256: 2636dc340c375ec2267ba365457ee67dc667700ada87635a635cee6f39a99d60
