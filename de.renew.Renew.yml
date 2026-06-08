@@ -3,7 +3,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.openjdk25
 command: loadrenew
 finish-args:
   - "--env=PATH=/app/jre/bin:/usr/bin:/app/bin"
@@ -15,12 +15,12 @@ modules:
   - name: openjdk
     buildsystem: simple
     build-commands:
-      - /usr/lib/sdk/openjdk17/install.sh
+      - /usr/lib/sdk/openjdk25/install.sh
   - name: renew
     buildsystem: simple
     build-commands:
-      - unzip -d /app/ renew4.2base.zip -x 'doc/*' 'samples/*' 'bin/win/*'
-      - mv /app/renew4.2 /app/renew
+      - unzip -d /app/ renew5.0base.zip -x 'doc/*' 'samples/*' 'bin/win/*'
+      - mv /app/renew5.0 /app/renew
       - cd /app/renew/bin/unix; yes n | PATH="/app/jre/bin:/usr/bin" ./installrenew
       - for i in compilestub jcompile makestub renewexport renew loadrenew; do install -Dm755 /app/renew/bin/unix/$i /app/bin/$i; done
       - mkdir -p /app/share/icons/hicolor/
@@ -35,8 +35,8 @@ modules:
       - rm -rf /app/renew/bin/unix/{freedesktop,installrenew}
     sources:
       - type: file
-        url: https://www2.informatik.uni-hamburg.de/TGI/renew/4.2/renew4.2base.zip
-        sha256: 6b4facfd759634ed4b8ab2e234e1d3f4a69c64e901bfc55a8fecd11b70e5fe6a
+        url: https://www2.informatik.uni-hamburg.de/TGI/renew/5.0/renew5.0base.zip
+        sha256: 51dad0bdc53016fc887b794f4fbd5aedbae4031c12a3f9942288d1af57344f38
       - type: file
         url: https://www2.informatik.uni-hamburg.de/TGI/renew/appstream/de.renew.Renew.appdata.xml
-        sha256: 2636dc340c375ec2267ba365457ee67dc667700ada87635a635cee6f39a99d60
+        sha256: 3a472496242728d095ac5bd8aa9f9be57ec59cf66db32ff45a565e8e1137ffa8
